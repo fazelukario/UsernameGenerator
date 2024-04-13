@@ -5,9 +5,19 @@ using System.Text.RegularExpressions;
 
 namespace UsernameGenerator
 {
+    /// <summary>
+    /// A utility class for generating usernames.
+    /// </summary>
     public static class UsernameGenerator
     {
+        /// <summary>
+        /// The array of adjectives used for generating usernames.
+        /// </summary>
         public static string[] Adjectives;
+
+        /// <summary>
+        /// The array of animals used for generating usernames.
+        /// </summary>
         public static string[] Animals;
 
         private static readonly FileSystemWatcher _fileSystemWatcher;
@@ -39,6 +49,19 @@ namespace UsernameGenerator
             }
         }
 
+        /// <summary>
+        /// Generates a username based on the specified parameters.
+        /// </summary>
+        /// <param name="numberOfAdjectivesToUse">The number of adjectives to use in the username.</param>
+        /// <param name="numberOfAnimalsToUse">The number of animals to use in the username.</param>
+        /// <param name="separator">The separator to use between adjectives and animals.</param>
+        /// <param name="toLower">Indicates whether to convert the username to lowercase.</param>
+        /// <param name="fancyUsernames">Indicates whether to convert the username to a fancy username.</param>
+        /// <param name="maxLength">The maximum length of the username.</param>
+        /// <param name="addNumbers">Indicates whether to add numbers to the username.</param>
+        /// <param name="minNumbersValue">The minimum value for the added numbers.</param>
+        /// <param name="maxNumbersValue">The maximum value for the added numbers.</param>
+        /// <returns>The generated username.</returns>
         public static string GenerateUsername(int numberOfAdjectivesToUse = 1, int numberOfAnimalsToUse = 1,
                                               string separator = "", bool toLower = false, bool fancyUsernames = false,
                                               int? maxLength = null, bool addNumbers = false, int minNumbersValue = 1,
@@ -88,7 +111,7 @@ namespace UsernameGenerator
                 int charsToReplace = 0;
 
                 switch (i)
-        {
+                {
                     case 0:
                         charsToReplace = username.Count(c => c == 'o');
 
