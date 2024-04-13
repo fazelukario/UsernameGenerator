@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace UsernameGenerator
 {
@@ -68,16 +69,57 @@ namespace UsernameGenerator
             return username;
         }
 
-        public static string ToFancyUsername(string username)
+        /// <summary>
+        /// Converts the username to a fancy username.
+        /// </summary>
+        /// <param name="username">The username to convert.</param>
+        /// <param name="randomizeReplacment">Indicates whether to randomize the replacement of characters.</param>
+        /// <param name="randomizeReplacementCount">Indicates whether to randomize the count of characters to replace.</param>
+        /// <returns>The converted fancy username.</returns>
+        public static string ToFancyUsername(string username, bool randomizeReplacment = true, bool randomizeReplacementCount = true)
         {
-            if (_random.Next(0, 100) < 50)
-                username = username.Replace("o", "0");
+            for (int i = 0; i < 3; i++)
+            {
+                bool replace = !randomizeReplacment || _random.Next(0, 100) < 50;
 
-            if (_random.Next(0, 100) < 50)
-                username = username.Replace("l", "1");
+                if (!replace)
+                    continue;
 
-            if (_random.Next(0, 100) < 50)
-                username = username.Replace("e", "3");
+                int charsToReplace = 0;
+
+                switch (i)
+        {
+                    case 0:
+                        charsToReplace = username.Count(c => c == 'o');
+
+                        if (charsToReplace == 0)
+                            break;
+
+                        username = new Regex(Regex.Escape("o")).Replace(username, "0",
+                                                                        randomizeReplacementCount ? _random.Next(1, charsToReplace + 1) : charsToReplace);
+                        break;
+
+                    case 1:
+                        charsToReplace = username.Count(c => c == 'l');
+
+                        if (charsToReplace == 0)
+                            break;
+
+                        username = new Regex(Regex.Escape("l")).Replace(username, "1",
+                                                                        randomizeReplacementCount ? _random.Next(1, charsToReplace + 1) : charsToReplace);
+                        break;
+
+                    case 2:
+                        charsToReplace = username.Count(c => c == 'e');
+
+                        if (charsToReplace == 0)
+                            break;
+
+                        username = new Regex(Regex.Escape("e")).Replace(username, "3",
+                                                                        randomizeReplacementCount ? _random.Next(1, charsToReplace + 1) : charsToReplace);
+                        break;
+                }
+            }
 
             return username;
         }
