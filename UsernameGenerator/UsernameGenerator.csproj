@@ -12,6 +12,8 @@
     <PackageTags>generator;username;generators;usernames;account-generator;username-generator;accounts-generator</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © fazelukario 2024</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
