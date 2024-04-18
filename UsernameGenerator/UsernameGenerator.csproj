@@ -10,10 +10,18 @@
     <PackageProjectUrl>https://github.com/fazelukario/UsernameGenerator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/fazelukario/UsernameGenerator</RepositoryUrl>
     <PackageTags>generator;username;generators;usernames;account-generator;username-generator;accounts-generator</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>none</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
