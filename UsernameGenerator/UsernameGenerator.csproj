@@ -5,6 +5,15 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>UsernameGenerator</Title>
     <Authors>fazelukario</Authors>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Description>A .NET Standard 2.0 library that provides functionality to generate unique and creative usernames. It uses combinations of adjectives and animals to create memorable usernames. The library offers customization options such as the number of adjectives and animals to use, whether to convert the username to lowercase, and whether to add numbers to the username. It also supports the creation of "fancy" usernames by replacing certain characters with similar-looking numbers. The library watches for changes in the resource files and reloads them if necessary, ensuring the most up-to-date resources are used for username generation.</Description>
+    <PackageProjectUrl>https://github.com/fazelukario/UsernameGenerator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fazelukario/UsernameGenerator</RepositoryUrl>
+    <PackageTags>generator;username;generators;usernames;account-generator;username-generator;accounts-generator</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
 </Project>
