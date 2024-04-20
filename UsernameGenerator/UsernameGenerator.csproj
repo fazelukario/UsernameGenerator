@@ -16,6 +16,7 @@
     <OutputType>Library</OutputType>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
