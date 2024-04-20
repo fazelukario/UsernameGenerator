@@ -1,0 +1,65 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on: [push, pull_request]
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  DOTNET_SDK_VERSION: 8.0
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Release, Debug]
+  
+    name: Build and Package
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+          submodules: recursive
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
+
+    - name: Verify .NET
+      run: dotnet --info
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build project
+      run: dotnet build --no-restore -c "${{ matrix.configuration }}" -o "build/${{ matrix.configuration }}"
+
+#    - name: Test changes
+#      run: dotnet test --no-build --verbosity normal
+
+    - name: Build and Package Project
+      run: dotnet pack --include-source -c "${{ matrix.configuration }}" -o "build/nuget/${{ matrix.configuration }}" -p:Commit="${{ github.sha }}"
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        # Artifact name
+        name: ${{ github.event.repository.name }}-build-${{ matrix.configuration }}-${{ github.sha }}
+        
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./built/${{ matrix.configuration }}
+        retention-days: 90
+
+    - name: Upload a Nuget Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        # Artifact name
+        name: ${{ github.event.repository.name }}-nuget-${{ matrix.configuration }}-${{ github.sha }}
+        
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./built/nuget/${{ matrix.configuration }}
+        retention-days: 90
