@@ -44,9 +44,6 @@ jobs:
     - name: Build and Package Project
       run: dotnet pack --include-source -c "${{ matrix.configuration }}" -o "build/nuget/${{ matrix.configuration }}" -p:Commit="${{ github.sha }}"
 
-    - name: List dir
-      run: ls
-
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4
       with:
