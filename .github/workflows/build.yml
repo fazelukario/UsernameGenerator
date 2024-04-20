@@ -54,7 +54,7 @@ jobs:
         name: ${{ github.event.repository.name }}-build-${{ matrix.configuration }}-${{ github.sha }}
         
         # A file, directory or wildcard pattern that describes what to upload
-        path: built/${{ matrix.configuration }}
+        path: ./build/${{ matrix.configuration }}
         retention-days: 90
 
     - name: Upload a Nuget Artifact
@@ -64,5 +64,5 @@ jobs:
         name: ${{ github.event.repository.name }}-nuget-${{ matrix.configuration }}-${{ github.sha }}
         
         # A file, directory or wildcard pattern that describes what to upload
-        path: built/nuget/${{ matrix.configuration }}
+        path: ./build/nuget/${{ matrix.configuration }}
         retention-days: 90
