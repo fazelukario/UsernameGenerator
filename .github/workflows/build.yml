@@ -51,14 +51,14 @@ jobs:
         name: ${{ github.event.repository.name }}-build-${{ matrix.configuration }}-${{ github.sha }}
         
         # A file, directory or wildcard pattern that describes what to upload
-        path: ${{ github.event.repository.name }}/built/${{ matrix.configuration }}
+        path: ./${{ github.event.repository.name }}/built/${{ matrix.configuration }}
         retention-days: 90
 
     - name: Upload a Nuget Artifact
       uses: actions/upload-artifact@v4
       with:
         # Artifact name
-        name: ${{ github.event.repository.name }}-nuget-${{ matrix.configuration }}-${{ github.sha }}
+        name: ./${{ github.event.repository.name }}-nuget-${{ matrix.configuration }}-${{ github.sha }}
         
         # A file, directory or wildcard pattern that describes what to upload
         path: ${{ github.event.repository.name }}/built/nuget/${{ matrix.configuration }}
