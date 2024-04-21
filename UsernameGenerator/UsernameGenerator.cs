@@ -56,14 +56,14 @@ namespace UsernameGenerator
         /// <param name="numberOfAnimalsToUse">The number of animals to use in the username.</param>
         /// <param name="separator">The separator to use between adjectives and animals.</param>
         /// <param name="toLower">Indicates whether to convert the username to lowercase.</param>
-        /// <param name="fancyUsernames">Indicates whether to convert the username to a fancy username.</param>
+        /// <param name="fancyUsername">Indicates whether to convert the username to a fancy username.</param>
         /// <param name="maxLength">The maximum length of the username.</param>
         /// <param name="addNumbers">Indicates whether to add numbers to the username.</param>
         /// <param name="minNumbersValue">The minimum value for the added numbers.</param>
         /// <param name="maxNumbersValue">The maximum value for the added numbers.</param>
         /// <returns>The generated username.</returns>
         public static string GenerateUsername(int numberOfAdjectivesToUse = 1, int numberOfAnimalsToUse = 1,
-                                              string separator = "", bool toLower = false, bool fancyUsernames = false,
+                                              string separator = "", bool toLower = false, bool fancyUsername = false,
                                               int? maxLength = null, bool addNumbers = false, int minNumbersValue = 1,
                                               int maxNumbersValue = 1000)
         {
@@ -80,7 +80,7 @@ namespace UsernameGenerator
             if (maxLength != null && username.Length > maxLength)
                 username = username.Substring(0, maxLength.Value);
 
-            if (fancyUsernames)
+            if (fancyUsername)
                 username = ToFancyUsername(username);
 
             if (toLower)
