@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -29,7 +30,11 @@ namespace UsernameGenerator
 
             if (resourcesPath != null && Directory.Exists(resourcesPath))
             {
+                Debug.WriteLine("Loading resources from: " + resourcesPath);
+
                 LoadResources(resourcesPath);
+
+                Debug.WriteLine("Resources loaded");
 
                 _fileSystemWatcher = new FileSystemWatcher(resourcesPath, "*.txt")
                 {
@@ -45,7 +50,11 @@ namespace UsernameGenerator
             }
             else
             {
+                Debug.WriteLine("Loading default resources");
+
                 LoadResources();
+
+                Debug.WriteLine("Default resources loaded");
             }
         }
 
@@ -169,6 +178,11 @@ namespace UsernameGenerator
 
         private static void ReloadResources(object sender, FileSystemEventArgs e)
         {
+            Debug.WriteLine("Reloading resources");
+            Debug.WriteLine("Resource: " + e.Name);
+            Debug.WriteLine("Path: " + e.FullPath);
+            Debug.WriteLine("Event: " + e.ChangeType);
+
             switch (e.Name)
             {
                 case "Adjectives.txt":
@@ -184,6 +198,8 @@ namespace UsernameGenerator
                         Animals = Resources.Animals;
                     break;
             }
+
+            Debug.WriteLine("Resources reloaded");
         }
     }
 }
